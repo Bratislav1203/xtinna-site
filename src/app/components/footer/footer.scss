@@ -1,0 +1,70 @@
+.site-footer {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 2rem 1rem;
+  text-align: center;
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    .brand {
+      h2 {
+        margin-bottom: 0;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        color: var(--text-color);
+      }
+      .slogan {
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        opacity: 0.8;
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 0.95rem;
+
+        &:hover {
+          color: var(--accent-color);
+        }
+      }
+    }
+
+    .socials {
+      display: flex;
+      gap: 1rem;
+
+      a {
+        display: inline-block;
+
+        svg.social-icon {
+          width: 28px;
+          height: 28px;
+          fill: var(--text-color);
+          transition: transform 0.3s ease, fill 0.3s ease;
+
+          &:hover {
+            transform: scale(1.2);
+            fill: var(--accent-color);
+          }
+        }
+      }
+    }
+  }
+}

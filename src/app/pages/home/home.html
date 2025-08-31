@@ -1,0 +1,52 @@
+<section class="video-hero">
+  <video class="background-blur" autoplay loop muted playsinline>
+    <source src="videos/hero (online-video-cutter.com).mp4" type="video/mp4" />
+  </video>
+
+  <video class="video-foreground" autoplay loop [muted]="true" playsinline>
+    <source src="videos/hero (online-video-cutter.com).mp4" type="video/mp4" />
+  </video>
+
+  <div class="overlay-content">
+    <h1>XTINNA</h1>
+    <p class="slogan">Combination of comfort and quality</p>
+    <p>Nova kolekcija 2025</p>
+    <button routerLink="/collections">Pogledaj kolekciju</button>
+  </div>
+</section>
+
+<section class="featured-blocks">
+  <div class="block">
+    <h3>Za svaki dan</h3>
+    <p>Od prirodnih materijala</p>
+    <a routerLink="/collections">Pogledaj</a>
+  </div>
+  <div class="block">
+    <h3>Jednostavno & prirodno</h3>
+    <p>Minimalisticki dizajn, mekani materijali,<br>nosivo u svakoj prilici</p>
+    <a routerLink="/collections">Istraži</a>
+  </div>
+  <div class="block">
+    <h3>Stvarano s merom</h3>
+    <p>Svaki komad pazljivo krojen</p>
+    <a routerLink="/contact">Kontaktiraj nas</a>
+  </div>
+</section>
+
+<section class="collection-gallery">
+  <div class="gallery-item">
+    <img [routerLink]="['/collections']" [queryParams]="{ filter: 'zenska' }" src="images/bela.png" alt="Ženska kolekcija" />
+    <h4>Ženska kolekcija</h4>
+  </div>
+
+  <div class="gallery-item">
+    <img [routerLink]="['/collections']" [queryParams]="{ filter: 'muska' }" src="images/braon.png" alt="Muška kolekcija" />
+    <h4>Muška kolekcija</h4>
+  </div>
+
+  <div class="gallery-item">
+    <img [routerLink]="['/collections']" [queryParams]="{ filter: 'deca' }" src="images/mbela.png" alt="Dečija kolekcija" />
+    <h4>Dečija kolekcija</h4>
+  </div>
+
+</section>

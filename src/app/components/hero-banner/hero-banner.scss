@@ -1,0 +1,69 @@
+.video-hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); // možeš prilagoditi po temi ako treba
+    z-index: 1;
+  }
+
+  .overlay-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--text-color);
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 1rem;
+
+    .overlay-content .slogan {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      background-color: var(--accent-color);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--bg-color); // kontrast boja prema temi
+      font-weight: bold;
+      border-radius: 0.25rem;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #fb8c00;
+      }
+    }
+  }
+}

@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+  margin: 0px;
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .nav-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}
+.theme-dark {
+  --bg-color: #111;
+  --text-color: white;
+  --accent-color: #8d6e63;
+}
+
+.theme-light {
+  --bg-color: white;
+  --text-color: #111;
+  --accent-color: #8d6e63;
+}
+.toast-success {
+  background-color: #cec2c2 !important;
+  color: #111 !important; /* crni tekst da bude čitljiv */
+}
+
+/* styles.scss */
+html, body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; }
+
+button, input, textarea, select { font-family: inherit; }
+h1, h2, h3, h4, h5, h6 { font-weight: 700; } /* ako želiš jače naslove */

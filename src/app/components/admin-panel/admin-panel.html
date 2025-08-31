@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-row">
+    <label>Naziv:</label>
+    <input formControlName="naziv" />
+  </div>
+
+  <div class="form-row">
+    <label>Cena:</label>
+    <input type="number" formControlName="cena" />
+  </div>
+
+  <div class="form-row">
+    <label>Kategorija:</label>
+    <select formControlName="kategorija">
+      <option value="zenska">Ženska</option>
+      <option value="muska">Muška</option>
+      <option value="deca">Deca</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label>Opis:</label>
+    <textarea formControlName="opis"></textarea>
+  </div>
+
+  <div class="form-row">
+    <label>Slike:</label>
+    <input type="file" (change)="onFileSelected($event)" multiple />
+  </div>
+
+  <div class="previews">
+    <img *ngFor="let img of imagePreviews" [src]="img" />
+  </div>
+
+  <button type="submit">Dodaj proizvod</button>
+</form>

@@ -1,0 +1,520 @@
+// ===============================
+// Product page – SCSS (desktop & mobile)
+// Fiksne dimenzije slika + elegantno dugme
+// ===============================
+
+:root {
+  --bg: #ffffff;
+  --muted: #6b6b6b;
+  --text: #111111;
+  --card: #f7f8fa;
+
+  // tvoje boje (po potrebi prilagodi)
+  --accent: #3a2c29;  // tamno braon, premium look
+  --accent-2: #5a403a;
+}
+
+$product-thumb-w: 96px;
+$product-thumb-h: 120px;
+
+$product-thumb-mobile: 72px;
+
+$product-main-w: 560px; // širina wrappera za glavnu sliku
+$product-main-h: 680px; // VISINA JE FIKSNA → nema skakanja footera
+
+$product-gap: 2rem;
+
+%shadow-soft {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+}
+
+%shadow-thumb {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .10);
+}
+
+.product-page {
+  display: grid;
+  grid-template-columns: 110px minmax(360px, $product-main-w) minmax(320px, 1fr);
+  gap: $product-gap;
+  padding: 2rem;
+  background: var(--bg);
+  color: var(--text);
+  align-items: start;
+
+  // ===== Thumbs (levo na desktopu, ispod na mobilu) =====
+  .thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    img.thumb {
+      width: $product-thumb-w;
+      height: $product-thumb-h;
+      object-fit: cover;       // preseče višak, uvek ista veličina
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform .2s ease, outline-color .2s ease;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      @extend %shadow-thumb;
+
+      &:hover { transform: scale(1.03); }
+      &.active { outline-color: var(--accent); }
+    }
+  }
+
+  // ===== Glavna slika (uvek fix size) =====
+  .image-wrap {
+    position: relative;
+    width: 100%;
+
+    .main-image {
+      width: 100%;
+      max-width: $product-main-w;
+      height: $product-main-h;  // FIKSNO!
+      object-fit: cover;        // drži proporcije, nema skakanja
+      border-radius: 14px;
+      display: block;
+      @extend %shadow-soft;
+    }
+  }
+
+  // ===== Detalji (desno) =====
+  .details {
+    max-width: $product-main-w;
+
+    .title {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin: 0 0 .75rem;
+    }
+
+    .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+
+      .vat {
+        font-weight: 400;
+        font-size: .95rem;
+        color: var(--muted);
+        margin-left: .5rem;
+      }
+    }
+
+    .desc {
+      color: #333;
+      line-height: 1.6;
+      margin: 0 0 1.25rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: #eaeaea;
+      margin: 1rem 0 1.25rem;
+    }
+
+    // veličine
+    .sizes {
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: .5rem;
+      }
+
+      .size-grid {
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap;
+
+        .size-btn {
+          min-width: 48px;
+          height: 40px;
+          padding: 0 .75rem;
+          border-radius: 8px;
+          border: 1px solid #ddd;
+          background: #fff;
+          cursor: pointer;
+          transition: all .2s ease;
+
+          &:hover { border-color: #bbb; }
+          &.selected {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+          }
+        }
+      }
+    }
+
+    // CTA (količina + dugme)
+    .cta {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin: 1.25rem 0 1rem;
+
+      .qty {
+        width: 64px;
+        height: 44px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: .25rem .5rem;
+        font-size: 1rem;
+      }
+
+      .buy-btn {
+        background: var(--accent);
+        color: #393434;
+        padding: .95rem 2rem;
+        border: none;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: .5px;
+        cursor: pointer;
+        @extend %shadow-soft;
+        transition: transform .15s ease, background .2s ease, filter .2s ease;
+
+        &:hover {
+          background: var(--accent-2);
+          transform: translateY(-2px);
+          filter: brightness(1.02);
+        }
+      }
+    }
+    .buy-btn:disabled {
+      background: #ccc !important;   // siva pozadina
+      color: #666 !important;        // svetlosivi tekst
+      cursor: not-allowed;
+      opacity: 0.7;                  // izgleda "ugaseno"
+      box-shadow: none;              // bez senke
+    }
+
+
+    .meta {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      color: var(--muted);
+
+      li { margin: .25rem 0; }
+    }
+  }
+}
+
+/* =========================
+   Responsive (telefon / tablet)
+   ========================= */
+@media (max-width: 900px) {
+  .product-page {
+    grid-template-columns: 1fr;  // jedna kolona
+    gap: 1rem;
+    padding: 1rem;
+
+    // redosled: glavna slika, pa thumbs, pa detalji
+    .image-wrap { order: 1; }
+    .thumbs     { order: 2; }
+    .details    { order: 3; }
+
+    .image-wrap .main-image {
+      max-width: 100%;
+      width: 100%;
+      height: 72vw;          // proporcionalna visina na mobilnom (npr. 3:4)
+      max-height: 560px;     // sigurnosni limit
+      border-radius: 12px;
+    }
+
+    .thumbs {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .75rem;
+
+      img.thumb {
+        width: $product-thumb-mobile;
+        height: $product-thumb-mobile;
+        border-radius: 8px;
+      }
+    }
+
+    .details {
+      max-width: unset;
+      .title { font-size: 1.6rem; }
+    }
+  }
+}
+
+/* =========================
+   Sticky footer layout (opciono)
+   – koristi u globalnim stilovima ako želiš footer uvek na dnu
+   ========================= */
+/*
+app-root, body, html { height: 100%; }
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main { flex: 1 0 auto; }
+footer { flex-shrink: 0; }
+*/
+// ——— Kontakt kutija / Social / Meta ———
+.contact-card {
+  margin-top: 1.25rem;
+
+  .lead {
+    margin: 0 0 .75rem 0;
+    color: #222;
+    font-weight: 600;
+  }
+
+  .contact-phone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 280px;
+    height: 46px;
+    padding: 0 1.25rem;
+    border-radius: 12px;
+    border: 1px solid #e2e2e2;
+    background: #f7f7f7;
+    color: #111;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: .28em;    // razmak kao na screenu
+    transition: background .2s ease, transform .1s ease, border-color .2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+
+    &:hover {
+      background: #ececec;
+      border-color: #d9d9d9;
+      transform: translateY(-1px);
+    }
+  }
+
+  .social-row {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin: .9rem 0 1.1rem;
+
+    .social-link {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      background: #fff;
+      border: 1px solid #e7e7e7;
+      transition: transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+
+      &:hover {
+        background: #111;
+        color: #fff;
+        border-color: #111;
+        transform: translateY(-1px);
+      }
+
+      .social-icon { display: block; }
+    }
+  }
+
+  .wishlist-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .9rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #111;
+    text-decoration: none;
+    border-bottom: 1px solid #111;
+    padding-bottom: .15rem;
+    transition: color .2s ease, border-color .2s ease;
+
+    .heart { font-size: 1.1rem; line-height: 1; }
+
+    &:hover {
+      color: #444;
+      border-color: #444;
+    }
+  }
+
+  .category-line {
+    margin-top: 1.1rem;
+    font-size: .95rem;
+    color: #222;
+    letter-spacing: .18em;
+
+    .label {
+      color: #777;
+      margin-right: .5rem;
+    }
+
+    a {
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s ease;
+
+      &:hover { border-color: #111; }
+    }
+  }
+}
+
+// ——— Mobile prilagodjavanje ———
+@media (max-width: 900px) {
+  .contact-card {
+    .contact-phone {
+      min-width: 220px;
+      letter-spacing: .22em;
+      height: 44px;
+    }
+
+    .social-row {
+      justify-content: center;
+    }
+
+    .wishlist-link,
+    .category-line {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+.contact-card {
+  .contact-phone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;                 // razmak ikonica ↔ tekst
+    min-width: 280px;
+    height: 46px;
+    padding: 0 1.25rem;
+    border-radius: 12px;
+    border: 1px solid #e2e2e2;
+    background: #f7f7f7;
+    color: #111;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .2s ease, transform .1s ease, border-color .2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+
+    .phone-ic {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;       // nasleđuje boju linka
+      flex: 0 0 auto;
+    }
+    .phone-text {
+      letter-spacing: .28em;    // samo na tekst, ne i na ikonicu
+    }
+
+    &:hover {
+      background: #ececec;
+      border-color: #d9d9d9;
+      transform: translateY(-1px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .contact-phone {
+      min-width: 220px;
+      height: 44px;
+      .phone-text { letter-spacing: .22em; }
+    }
+  }
+}
+.popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 14px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+
+  h2 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  p { margin: .25rem 0; font-size: .95rem; }
+
+  form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+
+    input, textarea {
+      width: auto;
+      padding: .65rem .9rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+
+      &:focus {
+        border-color: var(--accent);
+        outline: none;
+      }
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .popup-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+
+      button {
+        flex: 1;
+        margin: 0 .25rem;
+        padding: .75rem 1rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:first-child {
+          background: #cec2c2;
+          color: black;
+        }
+
+        &:last-child {
+          background: #eee;
+        }
+      }
+    }
+  }
+}
+.popup-actions button:disabled {
+  background: #ddd !important;
+  color: #777 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+@media (max-width: 600px) {
+  .popup {
+    padding: 1.25rem;
+    max-width: 85%;
+  }
+}

@@ -1,0 +1,44 @@
+<section class="collection-page">
+  <header class="head">
+    <h1>
+      {{ aktivniFilter !== 'sve' ? labels[aktivniFilter] : 'Kolekcije' }}
+    </h1>
+    <p class="sub" *ngIf="aktivniFilter === 'sve'">
+      Izdvojeni modeli – izaberi i nastavi na stranicu proizvoda
+    </p>
+  </header>
+
+  <!-- Loading state -->
+  <div *ngIf="loading" class="loading">
+    Učitavam proizvode...
+  </div>
+
+  <!-- Grid proizvoda -->
+  <div class="grid" *ngIf="!loading">
+    <a class="card" *ngFor="let p of filtrirani" [routerLink]="p.link" [attr.aria-label]="p.naziv">
+      <div class="image">
+        <span class="badge">{{ p.kategorija | titlecase }}</span>
+
+        <!-- slika se renderuje tek kada je učitana -->
+        <img
+          *ngIf="getPrvaSlika(p)"
+          [src]="getPrvaSlika(p)!"
+          [alt]="p.naziv"
+          loading="lazy">
+      </div>
+
+      <div class="info">
+        <div class="text">
+          <h3>{{ p.naziv }}</h3>
+          <div class="price">{{ formatCena(p.cena) }}</div>
+        </div>
+        <span class="cta">Pogledaj</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Empty state -->
+  <p class="empty" *ngIf="!loading && filtrirani.length === 0">
+    Trenutno nema proizvoda u ovoj kolekciji.
+  </p>
+</section>

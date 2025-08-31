@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <div class="row">
+    <img routerLink="/" class="logo" [src]="logoPath" alt="XTINNA logo" />
+    <div class="hamburger" (click)="toggleMenu()">
+      &#9776;
+    </div>
+  </div>
+
+  <ul class="nav-links" [class.open]="menuOpen">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="menuOpen = false">Početna</a></li>
+    <li><a routerLink="/collections" routerLinkActive="active" (click)="menuOpen = false">Kolekcije</a></li>
+    <li><a routerLink="/about" routerLinkActive="active" (click)="menuOpen = false">O nama</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active" (click)="menuOpen = false">Kontakt</a></li>
+    <li><a routerLink="/cart" routerLinkActive="active" (click)="menuOpen = false">Korpa</a></li>
+  </ul>
+</nav>

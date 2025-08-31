@@ -1,0 +1,11 @@
+[
+  {
+    "origin": [
+      "http://localhost:4200",
+      "https://www.xtinna.com"
+    ],
+    "method": ["GET", "POST", "PUT", "DELETE", "HEAD"],
+    "maxAgeSeconds": 3600,
+    "responseHeader": ["Content-Type", "x-goog-meta-*"]
+  }
+]
