@@ -4,9 +4,8 @@ import { NgIf, NgFor } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, push, set } from 'firebase/database';
+import { getDatabase, ref, set, get } from 'firebase/database';
 import { environment } from '../../../environment';
-import { GoogleDriveService } from '../../services/google-drive';
 
 @Component({
   selector: 'app-admin-panel',
@@ -20,14 +19,12 @@ export class AdminPanel {
   selectedFiles: File[] = [];
   imagePreviews: string[] = [];
   uploadedUrls: string[] = [];
-  private readonly DRIVE_FOLDER_ID = '1xjoeiDJ_qjqli2ldh07QsGDdCcsyz1zo'; // 👈 tvoj folder ID
 
   private db;
 
   constructor(
     private fb: FormBuilder,
-    private toastr: ToastrService,
-    private googleDrive: GoogleDriveService
+    private toastr: ToastrService
   ) {
     this.form = this.fb.group({
       naziv: ['', Validators.required],
@@ -48,6 +45,15 @@ export class AdminPanel {
     );
   }
 
+  private async fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file); // 👈 Base64 DataURL
+    });
+  }
+
   async submit() {
     if (this.form.invalid || this.selectedFiles.length === 0) {
       this.toastr.error('Popuni sva polja i dodaj bar jednu sliku.');
@@ -57,30 +63,34 @@ export class AdminPanel {
     try {
       this.uploadedUrls = [];
 
-      // ✅ Login na Google i čekaj token
-      await this.googleDrive.signIn();
-
-      // ✅ Upload svake slike na Drive
+      // ✅ Pretvori svaku sliku u Base64 string
       for (let file of this.selectedFiles) {
-        const fileMeta = await this.googleDrive.uploadFile(file, this.DRIVE_FOLDER_ID);
-
-        // koristi webContentLink za <img>
-        this.uploadedUrls.push(fileMeta.webContentLink);
-
-        // možeš sačuvati i thumbnailLink ako hoćeš za preview
-        // this.uploadedUrls.push(fileMeta.thumbnailLink);
+        const base64 = await this.fileToBase64(file);
+        this.uploadedUrls.push(base64);
       }
 
-      // ✅ Pripremi novi proizvod
+      // ✅ Proveri postojeće proizvode da odrediš sledeći ID
+      const proizvodiRef = ref(this.db, 'proizvodi');
+      const snapshot = await get(proizvodiRef);
+
+      let newId = 1;
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const ids = Object.keys(data).map(k => parseInt(k, 10)).filter(n => !isNaN(n));
+        if (ids.length > 0) {
+          newId = Math.max(...ids) + 1;
+        }
+      }
+
+      // ✅ Snimi proizvod pod numeričkim ID-jem
       const newProduct = {
+        id: newId,
         ...this.form.value,
         slike: this.uploadedUrls,
         createdAt: Date.now()
       };
 
-      // ✅ Snimi proizvod u Firebase Realtime Database
-      const newRef = push(ref(this.db, 'proizvodi'));
-      await set(newRef, newProduct);
+      await set(ref(this.db, `proizvodi/${newId}`), newProduct);
 
       this.toastr.success('Proizvod uspešno dodat!');
       this.form.reset();

@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "naziv": "Anjina haljinica",
+    "cena": 2200,
+    "opis": "Lagani pamučni model za devojčice, savršen za prolećne dane.",
+    "kategorija": "deca",
+    "slike": [
+      "images/decija-kolekcija/anja/IMG_4439.JPG",
+      "images/decija-kolekcija/anja/IMG_4440.JPG",
+      "images/decija-kolekcija/anja/IMG_4442.JPG"
+    ]
+  },
+  {
+    "id": 2,
+    "naziv": "Dečija dukserica",
+    "cena": 2600,
+    "opis": "Udobna dukserica od mekanog pamuka, idealna za školu i igru.",
+    "kategorija": "deca",
+    "slike": [
+      "images/decija-kolekcija/anja/IMG_4444.JPG",
+      "images/decija-kolekcija/anja/IMG_4446.JPG",
+      "images/decija-kolekcija/anja/IMG_4447.JPG",
+      "images/decija-kolekcija/anja/IMG_4448.JPG"
+    ]
+  },
+  {
+    "id": 3,
+    "naziv": "Muška sportska jakna",
+    "cena": 5400,
+    "opis": "Vodootporna jakna za svakodnevnu upotrebu i sportske aktivnosti.",
+    "kategorija": "muska",
+    "slike": [
+      "images/muska-kolekcija/IMG_3704.jpg",
+      "images/muska-kolekcija/IMG_3718.jpg",
+      "images/muska-kolekcija/IMG_3722.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "naziv": "Muška kožna jakna",
+    "cena": 8900,
+    "opis": "Klasičan model kožne jakne koja se uklapa u svaki stil.",
+    "kategorija": "muska",
+    "slike": [
+      "images/muska-kolekcija/IMG_3723.jpg",
+      "images/muska-kolekcija/IMG_3739.jpg",
+      "images/muska-kolekcija/IMG_4662.JPG",
+      "images/muska-kolekcija/IMG_4671.JPG"
+    ]
+  },
+  {
+    "id": 5,
+    "naziv": "Ženska elegantna haljina",
+    "cena": 7200,
+    "opis": "Elegantna haljina za svečane prilike, izrađena od kvalitetnih materijala.",
+    "kategorija": "zenska",
+    "slike": [
+      "images/zenska-kolekcija/IMG_3896.JPG",
+      "images/zenska-kolekcija/IMG_3911.JPG",
+      "images/zenska-kolekcija/IMG_3998.JPG"
+    ]
+  },
+  {
+    "id": 6,
+    "naziv": "Ženska bluza",
+    "cena": 3100,
+    "opis": "Moderna bluza sa unikatnim printom, pogodna i za posao i za večernji izlazak.",
+    "kategorija": "zenska",
+    "slike": [
+      "images/zenska-kolekcija/IMG_3999.JPG",
+      "images/zenska-kolekcija/IMG_4987.JPG",
+      "images/zenska-kolekcija/IMG_5129.JPG",
+      "images/zenska-kolekcija/IMG_5130.JPG"
+    ]
+  }
+]

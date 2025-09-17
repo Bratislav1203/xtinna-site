@@ -14,7 +14,7 @@ export class Collections implements OnInit {
   proizvodi: Proizvod[] = [];
   filtrirani: Proizvod[] = [];
   aktivniFilter: 'sve' | Kategorija = 'sve';
-  loading = true; // ⏳ indikator da se podaci učitavaju
+  loading = true;
 
   labels: Record<Kategorija, string> = {
     zenska: 'Ženska kolekcija',
@@ -33,25 +33,21 @@ export class Collections implements OnInit {
     this.route.queryParams.subscribe(params => {
       const filter = params['filter'] as Kategorija | undefined;
       this.aktivniFilter = filter ?? 'sve';
-      console.log('📌 Aktivni filter:', this.aktivniFilter);
       this.primeniFilter();
     });
 
-    // punimo proizvode iz baze
+    // punimo proizvode iz products.json
     this.productService.getAllOnce().then((proizvodi) => {
-      console.log('✅ Dobijeni proizvodi iz baze:', proizvodi);
       this.proizvodi = this.pripremiProizvode(proizvodi);
-      console.log('🛠 Posle pripreme (filtrirane slike):', this.proizvodi);
       this.primeniFilter();
-      this.loading = false; // podaci spremni
+      this.loading = false;
     }).catch(err => {
       console.error('❌ Greška pri dohvatanju proizvoda:', err);
-      this.loading = false; // ugasi loader i u slučaju greške
+      this.loading = false;
     });
   }
 
   postaviFilter(filter: 'sve' | Kategorija): void {
-    console.log('🔄 Menjam filter na:', filter);
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { filter: filter === 'sve' ? null : filter },
@@ -65,24 +61,17 @@ export class Collections implements OnInit {
     } else {
       this.filtrirani = this.proizvodi.filter(p => p.kategorija === this.aktivniFilter);
     }
-    console.log('🎯 Filtrirani proizvodi:', this.filtrirani);
   }
 
   private pripremiProizvode(proizvodi: Proizvod[]): Proizvod[] {
     return proizvodi.map(p => {
       const slike = (p.slike || []).filter(s => !!s);
-      console.log(`🖼 Proizvod "${p.naziv}" -> slike:`, slike);
       return { ...p, slike };
     });
   }
 
   getPrvaSlika(p: Proizvod): string | null {
-    if (p.slike && p.slike.length > 0) {
-      console.log(`📷 Prva slika za "${p.naziv}":`, p.slike[0]);
-      return p.slike[0];
-    }
-    console.warn(`⚠️ Proizvod "${p.naziv}" nema sliku!`);
-    return null;
+    return p.slike && p.slike.length > 0 ? p.slike[0] : null;
   }
 
   formatCena(cena: number): string {

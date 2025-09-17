@@ -6,6 +6,38 @@
     <p class="sub" *ngIf="aktivniFilter === 'sve'">
       Izdvojeni modeli – izaberi i nastavi na stranicu proizvoda
     </p>
+
+    <!-- Filter dugmad -->
+    <div class="filters">
+      <button
+        class="pill"
+        [class.active]="aktivniFilter === 'sve'"
+        (click)="postaviFilter('sve')">
+        Sve kolekcije
+      </button>
+
+      <button
+        class="pill"
+        [class.active]="aktivniFilter === 'zenska'"
+        (click)="postaviFilter('zenska')">
+        Ženska
+      </button>
+
+      <button
+        class="pill"
+        [class.active]="aktivniFilter === 'muska'"
+        (click)="postaviFilter('muska')">
+        Muška
+      </button>
+
+      <button
+        class="pill"
+        [class.active]="aktivniFilter === 'deca'"
+        (click)="postaviFilter('deca')">
+        Dečija
+      </button>
+    </div>
+
   </header>
 
   <!-- Loading state -->
@@ -15,11 +47,10 @@
 
   <!-- Grid proizvoda -->
   <div class="grid" *ngIf="!loading">
-    <a class="card" *ngFor="let p of filtrirani" [routerLink]="p.link" [attr.aria-label]="p.naziv">
+    <a class="card" *ngFor="let p of filtrirani" [routerLink]="['/collections', p.kategorija, p.id]" [attr.aria-label]="p.naziv">
       <div class="image">
         <span class="badge">{{ p.kategorija | titlecase }}</span>
 
-        <!-- slika se renderuje tek kada je učitana -->
         <img
           *ngIf="getPrvaSlika(p)"
           [src]="getPrvaSlika(p)!"

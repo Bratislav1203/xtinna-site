@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {LowerCasePipe, NgFor, NgIf, UpperCasePipe} from '@angular/common';
+import { LowerCasePipe, NgFor, NgIf, UpperCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../environment';
-import { RouterLink } from '@angular/router';   // 👈 dodaj ovo
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, get, child } from 'firebase/database';
+import { ProductService, Proizvod } from '../../services/product';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, LowerCasePipe, UpperCasePipe, RouterLink],
+  imports: [NgFor, NgIf, FormsModule, UpperCasePipe, RouterLink],
   templateUrl: './product.html',
   styleUrls: ['./product.scss']
 })
@@ -21,6 +20,7 @@ export class Product implements OnInit {
   sizes = ['XS', 'S', 'M', 'L'];
   selectedSize: string | null = null;
 
+  productId: number | null = null;
   productTitle = '';
   productPrice = '';
   productDesc = '';
@@ -36,30 +36,38 @@ export class Product implements OnInit {
     message: ''
   };
 
-  constructor(private toastr: ToastrService) {}
+  constructor(
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
   async ngOnInit() {
-    // Inicijalizuj Firebase
-    const app = initializeApp(environment.firebase);
-    const db = getDatabase(app);
+    // 👇 ID iz URL-a
+    const idParam = this.route.snapshot.paramMap.get('id');
+    this.productId = idParam ? Number(idParam) : null;
+
+    if (!this.productId) {
+      console.error('❌ Nema ID proizvoda u URL-u');
+      this.toastr.error('Proizvod nije pronađen.');
+      return;
+    }
 
     try {
-      // 👇 trenutno samo prvi proizvod iz baze (kasnije možeš po ID-u iz URL-a)
-      const snapshot = await get(child(ref(db), 'proizvodi'));
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        const keys = Object.keys(data);
-        const product = data[keys[0]];
-
+      const product: Proizvod | null = await this.productService.getByIdOnce(this.productId);
+      if (product) {
         this.productTitle = product.naziv;
         this.productPrice = product.cena + ' RSD';
         this.productDesc = product.opis;
         this.productCategory = product.kategorija;
         this.images = product.slike || [];
         this.mainImage = this.images.length > 0 ? this.images[0] : '';
+      } else {
+        this.toastr.error('Proizvod nije pronađen.');
       }
     } catch (err) {
       console.error('❌ Greška pri čitanju proizvoda:', err);
+      this.toastr.error('Greška pri učitavanju proizvoda.');
     }
   }
 
