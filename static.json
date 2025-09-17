@@ -1,0 +1,6 @@
+{
+  "root": "dist/xtinna-site",
+  "routes": {
+    "/*": "index.html"
+  }
+}
