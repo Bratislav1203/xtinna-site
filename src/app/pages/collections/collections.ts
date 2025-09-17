@@ -19,7 +19,7 @@ export class Collections implements OnInit {
   labels: Record<Kategorija, string> = {
     zenska: 'Ženska kolekcija',
     muska: 'Muška kolekcija',
-    deca: 'Dečija kolekcija'
+    dečija: 'Dečija kolekcija'
   };
 
   constructor(

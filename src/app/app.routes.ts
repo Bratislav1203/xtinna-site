@@ -25,4 +25,7 @@ export const routes: Routes = [
   // admin
   { path: 'admin/jasdlajkl123jklqajdkl', component: AdminLogin },
   { path: 'admin/panel', component: AdminPanel },
+
+  // fallback → Home
+  { path: '**', component: Home }
 ];
