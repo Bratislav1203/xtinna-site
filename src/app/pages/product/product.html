@@ -19,7 +19,9 @@
   <!-- detalji -->
   <div class="details">
     <h1 class="title">{{ productTitle }}</h1>
-    <div class="price">{{ productPrice }} <span class="vat">sa PDV-om</span></div>
+    <div class="price">
+      {{ productPrice }} <span class="vat">sa PDV-om</span>
+    </div>
 
     <p class="desc">{{ productDesc }}</p>
 
@@ -40,62 +42,53 @@
       </div>
     </div>
 
-    <!-- Dugme za poručivanje -->
+    <!-- Dugme za dodavanje u korpu -->
     <div class="cta">
       <button
         class="buy-btn"
         type="button"
         [disabled]="!selectedSize"
-        (click)="openOrderPopup()">
-        Poruči
+        (click)="addToCart()"
+      >
+        Dodaj u korpu
       </button>
     </div>
 
-    <!-- Kontakt / Social / Meta -->
+    <!-- Kontakt / Social -->
     <div class="contact-card">
       <a class="contact-phone" href="tel:+381666450000">
-        <svg class="phone-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1v3.19a1 1 0 0 1-1 1C11.85 21.5 2.5 12.15 2.5 1.99a1 1 0 0 1 1-1h3.19a1 1 0 0 1 1 1c0 1.24.19 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.2 2.2z"/>
+        <svg
+          class="phone-ic"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1v3.19a1 1 0 0 1-1 1C11.85 21.5 2.5 12.15 2.5 1.99a1 1 0 0 1 1-1h3.19a1 1 0 0 1 1 1c0 1.24.19 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.2 2.2z"
+          />
         </svg>
         <span class="phone-text">+381 66 645 0000</span>
       </a>
 
       <div class="social-row">
-        <a href="https://www.instagram.com/xtinna__/" target="_blank" class="social-link">
-          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7.5 2h9A5.51 5.51 0 0 1 22 7.5v9A5.51 5.51 0 0 1 16.5 22h-9A5.51 5.51 0 0 1 2 16.5v-9A5.51 5.51 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zm4.5 3a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7zm5.25-.75a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5z"/>
+        <a
+          href="https://www.instagram.com/xtinna__/"
+          target="_blank"
+          class="social-link"
+        >
+          <svg
+            class="social-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M7.5 2h9A5.51 5.51 0 0 1 22 7.5v9A5.51 5.51 0 0 1 16.5 22h-9A5.51 5.51 0 0 1 2 16.5v-9A5.51 5.51 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zm4.5 3a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7zm5.25-.75a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5z"
+            />
           </svg>
         </a>
       </div>
-
-      <a class="wishlist-link" href="#" role="button">
-        <span class="heart">♡</span> ADD TO WISHLIST
-      </a>
-
     </div>
-  </div>
-</div>
-
-<!-- Popup -->
-<div class="popup-backdrop" *ngIf="popupOpen">
-  <div class="popup">
-    <h2>Poruči proizvod</h2>
-
-    <p><strong>Proizvod:</strong> {{ productTitle }}</p>
-    <p><strong>Veličina:</strong> {{ selectedSize }}</p>
-    <p><strong>Cena:</strong> {{ productPrice }}</p>
-
-    <form (ngSubmit)="submitOrder()" #orderForm="ngForm">
-      <input type="text" name="name" [(ngModel)]="orderData.name" placeholder="Ime i prezime" required />
-      <input type="email" name="email" [(ngModel)]="orderData.email" placeholder="Email" required />
-      <input type="tel" name="phone" [(ngModel)]="orderData.phone" placeholder="Telefon" required />
-      <input type="text" name="address" [(ngModel)]="orderData.address" placeholder="Adresa" required />
-      <textarea name="message" [(ngModel)]="orderData.message" placeholder="Dodatna poruka (opciono)"></textarea>
-
-      <div class="popup-actions">
-        <button type="submit" [disabled]="!orderForm.valid || !selectedSize">Pošalji porudžbinu</button>
-        <button type="button" (click)="closeOrderPopup()">Otkaži</button>
-      </div>
-    </form>
   </div>
 </div>

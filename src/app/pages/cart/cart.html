@@ -1,1 +1,80 @@
-<p>cart works!</p>
+<section class="cart-page">
+  <h1>Vaša korpa</h1>
+
+  <table *ngIf="items.length > 0; else empty">
+    <thead>
+    <tr>
+      <th>Proizvod</th>
+      <th>Veličina</th>
+      <th>Količina</th>
+      <th>Cena</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items; let i = index">
+      <td>{{ item.proizvod.naziv }}</td>
+      <td>{{ item.size || '-' }}</td>
+      <td>
+        <input
+          type="number"
+          [(ngModel)]="item.qty"
+          (ngModelChange)="updateQty(i, item.qty)"
+          min="1"
+        />
+      </td>
+      <td>
+        {{ item.proizvod.cena * item.qty | currency: 'RSD':'symbol':'1.0-0' }}
+      </td>
+      <td><button (click)="remove(i)">❌</button></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <ng-template #empty>
+    <p>Korpa je prazna.</p>
+  </ng-template>
+
+  <div *ngIf="items.length > 0" class="summary">
+    <h3>Ukupno: {{ total | currency: 'RSD':'symbol':'1.0-0' }}</h3>
+    <form (ngSubmit)="submitOrder()" #orderForm="ngForm">
+      <input
+        type="text"
+        [(ngModel)]="orderData.name"
+        name="name"
+        placeholder="Ime i prezime"
+        required
+      />
+      <input
+        type="email"
+        [(ngModel)]="orderData.email"
+        name="email"
+        placeholder="Email"
+        required
+      />
+      <input
+        type="tel"
+        [(ngModel)]="orderData.phone"
+        name="phone"
+        placeholder="Telefon"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="orderData.address"
+        name="address"
+        placeholder="Adresa"
+        required
+      />
+      <textarea
+        [(ngModel)]="orderData.message"
+        name="message"
+        placeholder="Napomena"
+      ></textarea>
+
+      <button type="submit" [disabled]="!orderForm.valid">
+        Pošalji porudžbinu
+      </button>
+    </form>
+  </div>
+</section>

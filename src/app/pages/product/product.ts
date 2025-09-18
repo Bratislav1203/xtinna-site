@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { LowerCasePipe, NgFor, NgIf, UpperCasePipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import emailjs from '@emailjs/browser';
-import { environment } from '../../../environment';
 import { ProductService, Proizvod } from '../../services/product';
+import { CartService } from '../../services/cart';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, UpperCasePipe, RouterLink],
+  imports: [NgFor, NgIf],
   templateUrl: './product.html',
   styleUrls: ['./product.scss']
 })
 export class Product implements OnInit {
   images: string[] = [];
-  mainImage: string = '';
+  mainImage = '';
   sizes = ['XS', 'S', 'M', 'L'];
   selectedSize: string | null = null;
 
@@ -25,30 +23,20 @@ export class Product implements OnInit {
   productPrice = '';
   productDesc = '';
   productCategory = '';
-
-  popupOpen = false;
-
-  orderData = {
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    message: ''
-  };
+  proizvod: Proizvod | null = null;
 
   constructor(
     private toastr: ToastrService,
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
   ) {}
 
   async ngOnInit() {
-    // 👇 ID iz URL-a
     const idParam = this.route.snapshot.paramMap.get('id');
     this.productId = idParam ? Number(idParam) : null;
 
     if (!this.productId) {
-      console.error('❌ Nema ID proizvoda u URL-u');
       this.toastr.error('Proizvod nije pronađen.');
       return;
     }
@@ -56,6 +44,7 @@ export class Product implements OnInit {
     try {
       const product: Proizvod | null = await this.productService.getByIdOnce(this.productId);
       if (product) {
+        this.proizvod = product;
         this.productTitle = product.naziv;
         this.productPrice = product.cena + ' RSD';
         this.productDesc = product.opis;
@@ -79,39 +68,13 @@ export class Product implements OnInit {
     this.selectedSize = size;
   }
 
-  openOrderPopup() {
-    this.orderData = { name: '', email: '', phone: '', address: '', message: '' };
-    this.popupOpen = true;
-  }
-
-  closeOrderPopup() {
-    this.popupOpen = false;
-  }
-
-  submitOrder() {
-    const payload = {
-      ...this.orderData,
-      product: this.productTitle,
+  addToCart() {
+    if (!this.proizvod) return;
+    this.cartService.addToCart({
+      proizvod: this.proizvod,
       size: this.selectedSize,
-      price: this.productPrice
-    };
-
-    emailjs
-      .send(
-        environment.emailjs.serviceID,
-        environment.emailjs.templateID,
-        payload,
-        environment.emailjs.publicKey
-      )
-      .then(() => {
-        this.toastr.success('Porudžbina uspešno poslata!');
-        this.closeOrderPopup();
-        this.orderData = { name: '', email: '', phone: '', address: '', message: '' };
-        this.selectedSize = null;
-      })
-      .catch((err) => {
-        this.toastr.error('Greška pri slanju porudžbine.', '❌ Greška');
-        console.error('EmailJS error:', err);
-      });
+      qty: 1
+    });
+    this.toastr.success('Proizvod dodat u korpu!');
   }
 }
