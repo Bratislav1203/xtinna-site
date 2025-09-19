@@ -14,13 +14,15 @@
   --accent-2: #5a403a;
 }
 
+// === Dimenzije u 2:3 odnosu ===
 $product-thumb-w: 96px;
-$product-thumb-h: 120px;
+$product-thumb-h: 144px;   // 2:3 odnos
 
 $product-thumb-mobile: 72px;
+$product-thumb-mobile-h: 108px;  // 2:3 odnos
 
-$product-main-w: 560px; // širina wrappera za glavnu sliku
-$product-main-h: 680px; // VISINA JE FIKSNA → nema skakanja footera
+$product-main-w: 420px;
+$product-main-h: 630px;   // 2:3 odnos
 
 $product-gap: 2rem;
 
@@ -46,11 +48,17 @@ $product-gap: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    max-height: 640px;
+    overflow-y: auto;
+    padding-inline: 8px; // za scrollbar
+    padding-block: 6px;
+    width: 115px;
+
 
     img.thumb {
       width: $product-thumb-w;
-      height: $product-thumb-h;
-      object-fit: cover;       // preseče višak, uvek ista veličina
+      height: $product-thumb-h;   // 96x144
+      object-fit: cover;
       border-radius: 10px;
       cursor: pointer;
       transition: transform .2s ease, outline-color .2s ease;
@@ -71,8 +79,8 @@ $product-gap: 2rem;
     .main-image {
       width: 100%;
       max-width: $product-main-w;
-      height: $product-main-h;  // FIKSNO!
-      object-fit: cover;        // drži proporcije, nema skakanja
+      height: $product-main-h;
+      object-fit: cover;
       border-radius: 14px;
       display: block;
       @extend %shadow-soft;
@@ -183,13 +191,12 @@ $product-gap: 2rem;
       }
     }
     .buy-btn:disabled {
-      background: #ccc !important;   // siva pozadina
-      color: #666 !important;        // svetlosivi tekst
+      background: #ccc !important;
+      color: #666 !important;
       cursor: not-allowed;
-      opacity: 0.7;                  // izgleda "ugaseno"
-      box-shadow: none;              // bez senke
+      opacity: 0.7;
+      box-shadow: none;
     }
-
 
     .meta {
       list-style: none;
@@ -207,11 +214,10 @@ $product-gap: 2rem;
    ========================= */
 @media (max-width: 900px) {
   .product-page {
-    grid-template-columns: 1fr;  // jedna kolona
+    grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1rem;
 
-    // redosled: glavna slika, pa thumbs, pa detalji
     .image-wrap { order: 1; }
     .thumbs     { order: 2; }
     .details    { order: 3; }
@@ -219,8 +225,7 @@ $product-gap: 2rem;
     .image-wrap .main-image {
       max-width: 100%;
       width: 100%;
-      height: 72vw;          // proporcionalna visina na mobilnom (npr. 3:4)
-      max-height: 560px;     // sigurnosni limit
+      max-height: 560px;
       border-radius: 12px;
     }
 
@@ -229,10 +234,15 @@ $product-gap: 2rem;
       justify-content: center;
       flex-wrap: wrap;
       gap: .75rem;
+      max-height: unset;
+      overflow-y: unset;
+      padding-inline: unset;
+      width: unset;
+
 
       img.thumb {
         width: $product-thumb-mobile;
-        height: $product-thumb-mobile;
+        height: $product-thumb-mobile-h; // 72x108
         border-radius: 8px;
       }
     }
@@ -244,21 +254,7 @@ $product-gap: 2rem;
   }
 }
 
-/* =========================
-   Sticky footer layout (opciono)
-   – koristi u globalnim stilovima ako želiš footer uvek na dnu
-   ========================= */
-/*
-app-root, body, html { height: 100%; }
-app-root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-main { flex: 1 0 auto; }
-footer { flex-shrink: 0; }
-*/
-// ——— Kontakt kutija / Social / Meta ———
+/* Kontakt kutija, social, popup, sve ostalo ostaje isto */
 .contact-card {
   margin-top: 1.25rem;
 
@@ -281,7 +277,7 @@ footer { flex-shrink: 0; }
     color: #111;
     font-weight: 700;
     text-decoration: none;
-    letter-spacing: .28em;    // razmak kao na screenu
+    letter-spacing: .28em;
     transition: background .2s ease, transform .1s ease, border-color .2s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,.06);
 
@@ -365,7 +361,6 @@ footer { flex-shrink: 0; }
   }
 }
 
-// ——— Mobile prilagodjavanje ———
 @media (max-width: 900px) {
   .contact-card {
     .contact-phone {
@@ -373,11 +368,9 @@ footer { flex-shrink: 0; }
       letter-spacing: .22em;
       height: 44px;
     }
-
     .social-row {
       justify-content: center;
     }
-
     .wishlist-link,
     .category-line {
       display: block;
@@ -390,7 +383,7 @@ footer { flex-shrink: 0; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: .6rem;                 // razmak ikonica ↔ tekst
+    gap: .6rem;
     min-width: 280px;
     height: 46px;
     padding: 0 1.25rem;
@@ -406,11 +399,11 @@ footer { flex-shrink: 0; }
     .phone-ic {
       width: 18px;
       height: 18px;
-      fill: currentColor;       // nasleđuje boju linka
+      fill: currentColor;
       flex: 0 0 auto;
     }
     .phone-text {
-      letter-spacing: .28em;    // samo na tekst, ne i na ikonicu
+      letter-spacing: .28em;
     }
 
     &:hover {
@@ -428,6 +421,7 @@ footer { flex-shrink: 0; }
     }
   }
 }
+
 .popup-backdrop {
   position: fixed;
   inset: 0;
@@ -510,7 +504,6 @@ footer { flex-shrink: 0; }
   cursor: not-allowed;
   opacity: 0.6;
 }
-
 
 @media (max-width: 600px) {
   .popup {
