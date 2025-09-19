@@ -4,11 +4,11 @@
     "naziv": "Pamučni set easy fit",
     "cena": 6400,
     "opis": "Set od četvoroslojnog pamučnog muslina sa širokim nogavicama. Gornji deo je dizajniran sa zvonastim rukavima i šlicevima, dok vezivanje omogućava različite stilizacije – može se nositi i napred i nazad, u zavisnosti od želje. Ovaj model kombinuje udobnost sa unikatnim i modernim detaljima.",
-    "kategorija": "decija",
+    "kategorija": "dečija",
     "slike": [
+      "images/decija/pamucni set easy fit 6.400rsd/IMG_4442.JPG",
       "images/decija/pamucni set easy fit 6.400rsd/IMG_4439.JPG",
       "images/decija/pamucni set easy fit 6.400rsd/IMG_4440.JPG",
-      "images/decija/pamucni set easy fit 6.400rsd/IMG_4442.JPG",
       "images/decija/pamucni set easy fit 6.400rsd/IMG_4443.JPG",
       "images/decija/pamucni set easy fit 6.400rsd/IMG_4444.JPG",
       "images/decija/pamucni set easy fit 6.400rsd/IMG_4466.JPG"
@@ -19,7 +19,7 @@
     "naziv": "Pamučni set textured lines",
     "cena": 6400,
     "opis": "Set od 100% pamučnog materijala sa teksturom. Pantalone su širokih nogavica. Top je na bratele sa vezivanjem koje omogućava različite stilizacije. Može se nositi napred ili nazad, u zavisnosti od želje.",
-    "kategorija": "decija",
+    "kategorija": "dečija",
     "slike": [
       "images/decija/pamucni set textured lines - 6.400rsd/IMG_4445.JPG",
       "images/decija/pamucni set textured lines - 6.400rsd/IMG_4446.JPG",
@@ -35,7 +35,6 @@
     "opis": "Vanila set izrađen je od četvoroslojnog pamučnog muslina, koji je lagan i prozračan. Set se sastoji od širokih pantalona i oversized košulje kratkih rukava na kopčanje, sa minimalističkim i modernim krojem. Njegova jednostavnost i kvalitet materijala čine ga bezvremenim komadom.",
     "kategorija": "muska",
     "slike": [
-      "images/muska/muski pamucni set - 9.360rsd/IMG_3709.jpg",
       "images/muska/muski pamucni set - 9.360rsd/IMG_3722.jpg",
       "images/muska/muski pamucni set - 9.360rsd/IMG_3723.jpg",
       "images/muska/muski pamucni set - 9.360rsd/IMG_3725.jpg",
@@ -45,14 +44,17 @@
   },
   {
     "id": 4,
-    "naziv": "Bomber jakna od tvida",
-    "cena": 12800,
-    "opis": "Tvid jakna u bomber kroju — mekana, udobna i taman dovoljno posebna da podigne svaki outfit. Lako se uklapa i nosi svaki dan i idealna je za prelazne dane.",
+    "naziv": "Pamučni set easy fit",
+    "cena": 14000,
+    "opis": "Set od četvoroslojnog pamučnog muslina sa širokim nogavicama i preklopima koji daju poseban karakter donjem delu. Gornji deo je dizajniran sa zvonastim rukavima i šlicevima, dok vezivanje omogućava različite stilizacije – može se nositi i napred i nazad, u zavisnosti od želje. Ovaj model kombinuje udobnost sa unikatnim i modernim detaljima.",
     "kategorija": "zenska",
     "slike": [
-      "images/zenska/bomber jakna od tvida - 12.800rsd/IMG_7165.JPG",
-      "images/zenska/bomber jakna od tvida - 12.800rsd/IMG_6661.JPG",
-      "images/zenska/bomber jakna od tvida - 12.800rsd/IMG_7166.JPG"
+      "images/zenska/pamucni set easy fit - 14.000rsd/3F42BA9F-B9FA-43B2-BC23-F32F9AD97A9B.jpg",
+      "images/zenska/pamucni set easy fit - 14.000rsd/E53CBA42-BB1E-4B2E-91C4-E5FE6F6492CB.jpg",
+      "images/zenska/pamucni set easy fit - 14.000rsd/IMG_3896.JPG",
+      "images/zenska/pamucni set easy fit - 14.000rsd/IMG_3911.JPG",
+      "images/zenska/pamucni set easy fit - 14.000rsd/IMG_3998.JPG",
+      "images/zenska/pamucni set easy fit - 14.000rsd/IMG_3999.JPG"
     ]
   },
   {
@@ -62,11 +64,11 @@
     "opis": "Ako voliš da tvoj outfit ima neki twist, ove farmerke su to. Neobične i hrabre — ove farmerke su sve samo ne klasične. Visoki struk, zanimljivi detalji i široke nogavice koje se otvaraju napred daju im poseban karakter.",
     "kategorija": "zenska",
     "slike": [
+      "images/zenska/dzins - 6.000rsd/IMG_5132.JPG",
       "images/zenska/dzins - 6.000rsd/IMG_5130.JPG",
       "images/zenska/dzins - 6.000rsd/9FBC0D2F-4E9F-4886-B789-947E3D2EAEAE.jpg",
       "images/zenska/dzins - 6.000rsd/FA46643A-81CD-4F9E-A0AA-435AD8A76E94.jpg",
-      "images/zenska/dzins - 6.000rsd/885B56C4-E8E4-455D-8088-D7D12E9E5748.jpg",
-      "images/zenska/dzins - 6.000rsd/IMG_5132.JPG"
+      "images/zenska/dzins - 6.000rsd/885B56C4-E8E4-455D-8088-D7D12E9E5748.jpg"
     ]
   },
   {
@@ -76,10 +78,10 @@
     "opis": "Haljina od 100% pamuka, u predivnom četvoroslojnom muslinu koji daje punoću, ali ostaje lagan i udoban. Krojen tako da lepo pada, sa puf rukavima i diskretnim šlicem.",
     "kategorija": "zenska",
     "slike": [
+      "images/zenska/maxi pamucna haljina soft lines - 10.500rsd/FCCDCAB3-937B-4A95-A572-52BBE99AC6F7.jpg",
       "images/zenska/maxi pamucna haljina soft lines - 10.500rsd/18D69DC8-6563-4D11-8B94-DEDB33EA8D66.jpg",
       "images/zenska/maxi pamucna haljina soft lines - 10.500rsd/D78AE1FB-9241-4EA9-8A15-6D50C2277A62.jpg",
-      "images/zenska/maxi pamucna haljina soft lines - 10.500rsd/DBB00174-1AED-4404-8CFD-BD143C88206B.jpg",
-      "images/zenska/maxi pamucna haljina soft lines - 10.500rsd/FCCDCAB3-937B-4A95-A572-52BBE99AC6F7.jpg"
+      "images/zenska/maxi pamucna haljina soft lines - 10.500rsd/DBB00174-1AED-4404-8CFD-BD143C88206B.jpg"
     ]
   },
   {
@@ -116,9 +118,9 @@
     "opis": "Vanila set izrađen je od četvoroslojnog pamučnog muslina, koji je lagan i prozračan. Set se sastoji od širokih pantalona i oversized košulje kratkih rukava na kopčanje, sa minimalističkim i modernim krojem. Njegova jednostavnost i kvalitet materijala čine ga bezvremenim komadom.",
     "kategorija": "zenska",
     "slike": [
+      "images/zenska/pamucni set sunset - 9.360rsd/IMG_4672.JPG",
       "images/zenska/pamucni set sunset - 9.360rsd/IMG_4662.JPG",
       "images/zenska/pamucni set sunset - 9.360rsd/IMG_4671.JPG",
-      "images/zenska/pamucni set sunset - 9.360rsd/IMG_4672.JPG",
       "images/zenska/pamucni set sunset - 9.360rsd/IMG_4674.JPG",
       "images/zenska/pamucni set sunset - 9.360rsd/IMG_4681.JPG"
     ]
@@ -130,11 +132,23 @@
     "opis": "Odelo izrađeno od visokokvalitetnog četvoroslojnog pamučnog muslina, poznatog po svojoj izdržljivosti, prozračnosti i udobnosti. Odelo je dizajnirano u modernom oversized kroju, sa širokim nogavicama koje pružaju maksimalnu slobodu pokreta.",
     "kategorija": "zenska",
     "slike": [
-      "images/zenska/pamucno odelo resort - 17.550rsd/IMG_6648.JPG",
       "images/zenska/pamucno odelo resort - 17.550rsd/IMG_7174.JPG",
+      "images/zenska/pamucno odelo resort - 17.550rsd/IMG_6648.JPG",
       "images/zenska/pamucno odelo resort - 17.550rsd/IMG_7206.JPG",
       "images/zenska/pamucno odelo resort - 17.550rsd/IMG_7208.JPG",
       "images/zenska/pamucno odelo resort - 17.550rsd/IMG_7212.JPG"
+    ]
+  },
+  {
+    "id": 11,
+    "naziv": "Bomber jakna od tvida",
+    "cena": 12800,
+    "opis": "Tvid jakna u bomber kroju — mekana, udobna i taman dovoljno posebna da podigne svaki outfit. Lako se uklapa i nosi svaki dan i idealna je za prelazne dane.",
+    "kategorija": "zenska",
+    "slike": [
+      "images/zenska/bomber jakna od tvida - 12.800rsd/IMG_7166.JPG",
+      "images/zenska/bomber jakna od tvida - 12.800rsd/IMG_7165.JPG",
+      "images/zenska/bomber jakna od tvida - 12.800rsd/IMG_6661.JPG"
     ]
   }
 ]
