@@ -17,13 +17,7 @@ export class Navbar implements OnInit {
 
   ngOnInit(): void {
     // test konekcije prema Firebase-u
-    this.productService.getAllOnce()
-      .then((proizvodi: Proizvod[]) => {
-        console.log('✅ Učitani proizvodi iz Firebase-a:', proizvodi);
-      })
-      .catch(err => {
-        console.error('❌ Greška pri učitavanju proizvoda:', err);
-      });
+    this.productService.getAllOnce();
   }
 
   toggleMenu() {
