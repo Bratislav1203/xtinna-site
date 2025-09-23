@@ -28,7 +28,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "static.json"
             ],
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
@@ -87,7 +88,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "static.json"
             ],
             "styles": [
               "src/styles.scss"
