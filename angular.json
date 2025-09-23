@@ -15,11 +15,10 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:browser",
+          "builder": "@angular/build:application",
           "options": {
             "outputPath": "dist/xtinna-site",
-            "main": "src/main.ts",
-            "index": "src/index.html",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -28,8 +27,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public",
-                "output": "."
+                "input": "public"
               }
             ],
             "styles": [
