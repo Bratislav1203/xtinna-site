@@ -1,6 +1,5 @@
 <div class="product-page" *ngIf="images.length > 0">
   <!-- thumbnails -->
-
   <div class="thumbs">
     <img
       *ngFor="let img of images"
@@ -14,7 +13,12 @@
 
   <!-- glavna slika -->
   <div class="image-wrap">
-    <img [src]="mainImage" alt="Glavna slika proizvoda" class="main-image" />
+    <img
+      [src]="mainImage"
+      alt="Glavna slika proizvoda"
+      class="main-image"
+      (click)="onMainImageClick($event)"
+    />
   </div>
 
   <!-- detalji -->
@@ -57,7 +61,7 @@
 
     <!-- Kontakt / Social -->
     <div class="contact-card">
-      <a class="contact-phone" href="tel:+381666450000">
+      <a class="contact-phone" href="tel:+381607347891">
         <svg
           class="phone-ic"
           xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +71,7 @@
             d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1v3.19a1 1 0 0 1-1 1C11.85 21.5 2.5 12.15 2.5 1.99a1 1 0 0 1 1-1h3.19a1 1 0 0 1 1 1c0 1.24.19 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.2 2.2z"
           />
         </svg>
-        <span class="phone-text">+381 66 645 0000</span>
+        <span class="phone-text">+381 60 7347 891</span>
       </a>
 
       <div class="social-row">

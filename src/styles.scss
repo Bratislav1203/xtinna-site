@@ -33,3 +33,10 @@ html, body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif
 
 button, input, textarea, select { font-family: inherit; }
 h1, h2, h3, h4, h5, h6 { font-weight: 700; } /* ako želiš jače naslove */
+body {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 300;   // Light
+  font-style: normal;
+  margin: 0;          // da nema default margine
+  padding: 0;
+}

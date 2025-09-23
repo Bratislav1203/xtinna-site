@@ -77,4 +77,32 @@ export class Product implements OnInit {
     });
     this.toastr.success('Proizvod dodat u korpu!');
   }
+
+  nextImage() {
+    if (!this.images || this.images.length === 0) return;
+    const idx = this.images.indexOf(this.mainImage);
+    if (idx < this.images.length - 1) {
+      this.mainImage = this.images[idx + 1];
+    }
+  }
+
+  prevImage() {
+    if (!this.images || this.images.length === 0) return;
+    const idx = this.images.indexOf(this.mainImage);
+    if (idx > 0) {
+      this.mainImage = this.images[idx - 1];
+    }
+  }
+
+  onMainImageClick(event: MouseEvent) {
+    const element = event.currentTarget as HTMLElement;
+    const clickX = event.offsetX;
+    const width = element.clientWidth;
+
+    if (clickX > (width * 2) / 3) {
+      this.nextImage();
+    } else if (clickX < width / 3) {
+      this.prevImage();
+    }
+  }
 }

@@ -17,8 +17,8 @@ export class Collections implements OnInit {
   loading = true;
 
   labels: Record<Kategorija, string> = {
-    zenska: 'Ženska kolekcija',
-    muska: 'Muška kolekcija',
+    ženska: 'Ženska kolekcija',
+    muška: 'Muška kolekcija',
     dečija: 'Dečija kolekcija'
   };
 

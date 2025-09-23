@@ -66,6 +66,9 @@
   gap: 2rem;
   padding: 4rem 1rem;
   background-color: #f7f8fa;
+  font-family: "Noto Sans", sans-serif; // 👈 novi font
+  font-weight: 300; // 👈 Light
+  font-style: normal;
 
   .block {
     background: white;
@@ -79,11 +82,15 @@
     h3 {
       margin-bottom: 1rem;
       color: #111;
+      font-weight: 300;
+      font-style: normal;
     }
 
     p {
       margin-bottom: 1.5rem;
       color: #444;
+      font-weight: 300;
+      font-style: normal;
     }
 
     a {
@@ -93,6 +100,8 @@
       padding: 0.5rem 1rem;
       border-radius: 0.25rem;
       display: inline-block;
+      font-weight: 300;
+      font-style: normal;
 
       &:hover {
         background-color: var(--accent-2);
@@ -133,14 +142,15 @@
     }
   }
 }
+
 @media (max-width: 768px) {
   .collection-gallery {
     gap: 1rem;
+
     .gallery-item {
       img {
-        height: auto; // 👈 sve slike iste visine
+        height: auto; // 👈 na mobilnom nema fiksne visine
       }
-
     }
   }
 }
