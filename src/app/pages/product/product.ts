@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService, Proizvod } from '../../services/product';
 import { CartService } from '../../services/cart';
@@ -8,7 +8,7 @@ import { CartService } from '../../services/cart';
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, RouterLink],
   templateUrl: './product.html',
   styleUrls: ['./product.scss']
 })
@@ -24,6 +24,8 @@ export class Product implements OnInit {
   productDesc = '';
   productCategory = '';
   proizvod: Proizvod | null = null;
+
+  hasItemsInCart = false;
 
   constructor(
     private toastr: ToastrService,
@@ -54,6 +56,9 @@ export class Product implements OnInit {
       } else {
         this.toastr.error('Proizvod nije pronađen.');
       }
+
+      // proveri da li već ima nešto u korpi
+      this.hasItemsInCart = this.cartService.getItems().length > 0;
     } catch (err) {
       console.error('❌ Greška pri čitanju proizvoda:', err);
       this.toastr.error('Greška pri učitavanju proizvoda.');
@@ -76,6 +81,7 @@ export class Product implements OnInit {
       qty: 1
     });
     this.toastr.success('Proizvod dodat u korpu!');
+    this.hasItemsInCart = true; // posle dodavanja sigurno ima
   }
 
   nextImage() {
