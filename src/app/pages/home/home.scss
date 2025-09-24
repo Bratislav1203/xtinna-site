@@ -23,21 +23,25 @@
     transform: translateY(-50%);
     padding: 0 1rem;
     font-weight: lighter;
-    opacity: 0.4;
 
     h1 {
       font-size: 3rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
+      margin-top: 3.5rem;
       font-weight: 400;
+      opacity: 0.4;
     }
 
     p {
       font-size: 1.5rem;
       margin-bottom: 1rem;
+      opacity: 0.4;
 
       &.slogan {
         font-style: italic;
         font-size: 1.25rem;
+        opacity: 0.4;
+        margin-top: 0rem;
       }
     }
 
@@ -51,6 +55,7 @@
       font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      margin-top: 1rem;
 
       &:hover {
         background-color: var(--accent-2);
@@ -141,6 +146,22 @@
       color: #333;
     }
   }
+}
+.explore-btn {
+  background-color: #fff !important;
+  color: #000 !important;
+  padding: 0.75rem 2rem !important;
+  border: none !important;
+  border-radius: 0  rem !important;
+  font-weight: bold !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  text-transform: uppercase !important;
+}
+
+.explore-btn:hover {
+  background-color: #f0f0f0;
 }
 
 @media (max-width: 768px) {
