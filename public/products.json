@@ -150,5 +150,20 @@
       "images/zenska/bomber jakna od tvida - 12.800rsd/IMG_7165.JPG",
       "images/zenska/bomber jakna od tvida - 12.800rsd/IMG_6661.JPG"
     ]
+  },
+  {
+    "id": 12,
+    "naziv": "Vuneni set soft structure",
+    "cena": 21000,
+    "opis": "Trodelen set od vunenog štofa u toploj moka nijansi, dizajniran za udobnost i izražen, savremen izgled. Set čine pantalone ravnog kroja, oversized košulja sa kragnom i naramenicama, kao i kapa u istoj boji. Košulja je obogaćena asimetričnim detaljem koji pada preko ramena poput šala, dajući celini sofisticiran i prepoznatljiv karakter.",
+    "kategorija": "ženska",
+    "slike": [
+      "images/zenska/trodelno odelo od vunenog stofa/IMG_8260.JPG",
+      "images/zenska/trodelno odelo od vunenog stofa/IMG_8281.JPG",
+      "images/zenska/trodelno odelo od vunenog stofa/IMG_8288.JPG",
+      "images/zenska/trodelno odelo od vunenog stofa/IMG_8271.JPG",
+      "images/zenska/trodelno odelo od vunenog stofa/IMG_8274.JPG",
+      "images/zenska/trodelno odelo od vunenog stofa/IMG_8272.JPG"
+    ]
   }
 ]
